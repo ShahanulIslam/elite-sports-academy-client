@@ -3,14 +3,31 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { Helmet } from "react-helmet";
+import UseAuth from "../../Hooks/UseAuth";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
+    const { signIn } = UseAuth()
 
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'User logged in  Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     // toggle show password
