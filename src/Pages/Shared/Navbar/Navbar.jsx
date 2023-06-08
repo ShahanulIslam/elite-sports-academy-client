@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
+import UseAuth from "../../../Hooks/UseAuth";
 
 
 const Navbar = () => {
+    const {user,logOut}  = UseAuth()
     const navbarItems = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/">Instructors</Link></li>
         <li><Link to="/">Classes</Link></li>
     </>
+
+    const handleLogOut = () =>{
+        logOut()
+            .then()
+            .catch(error => console.error(error))
+    }
+
+
     return (
         <div className="navbar bg-base-100 h-28 mb-4">
             <div className="navbar-start">
@@ -30,7 +40,13 @@ const Navbar = () => {
             </div>
             <div className="navbar-end flex items-center gap-5">
                 <div>
-                    {/* USer Profile Pic */}
+                {user ?
+                    <div className='flex gap-2 md:gap-4'>
+                        <img title={user.displayName} className='rounded-full w-11 h-11' src={user.photoURL} alt="" />
+                        <button onClick={handleLogOut} className='btn btn-primary'>Logout</button>
+                    </div> :
+                    <Link to='/login' className="btn btn-primary">Login</Link>
+                }
                 </div>
             </div>
         </div>
