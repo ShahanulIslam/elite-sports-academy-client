@@ -6,7 +6,7 @@ const Navbar = () => {
     const {user,logOut}  = UseAuth()
     const navbarItems = <>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/">Instructors</Link></li>
+        <li><Link to="/instructors">Instructors</Link></li>
         <li><Link to="/allclasses">Classes</Link></li>
     </>
 
