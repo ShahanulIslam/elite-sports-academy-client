@@ -3,15 +3,18 @@ import UseAuth from "../../../Hooks/UseAuth";
 
 
 const Navbar = () => {
-    const {user,logOut}  = UseAuth()
+    const { user, logOut } = UseAuth()
     const navbarItems = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/instructors">Instructors</Link></li>
         <li><Link to="/allclasses">Classes</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
+        {
+            user &&
+            <li><Link to="/dashboard">Dashboard</Link></li>
+        }
     </>
 
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         logOut()
             .then()
             .catch(error => console.error(error))
@@ -41,13 +44,13 @@ const Navbar = () => {
             </div>
             <div className="navbar-end flex items-center gap-5">
                 <div>
-                {user ?
-                    <div className='flex gap-2 md:gap-4'>
-                        <img title={user.displayName} className='rounded-full w-11 h-11' src={user.photoURL} alt="" />
-                        <button onClick={handleLogOut} className='btn btn-primary'>Logout</button>
-                    </div> :
-                    <Link to='/login' className="btn btn-primary">Login</Link>
-                }
+                    {user ?
+                        <div className='flex gap-2 md:gap-4'>
+                            <img title={user.displayName} className='rounded-full w-11 h-11' src={user.photoURL} alt="" />
+                            <button onClick={handleLogOut} className='btn btn-primary'>Logout</button>
+                        </div> :
+                        <Link to='/login' className="btn btn-primary">Login</Link>
+                    }
                 </div>
             </div>
         </div>

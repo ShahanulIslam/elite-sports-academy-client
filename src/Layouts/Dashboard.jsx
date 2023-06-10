@@ -1,10 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaHome, FaUsers } from 'react-icons/fa';
 import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
 
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
     // const role = "admin"
     return (
         <div className="drawer lg:drawer-open">
@@ -19,30 +21,33 @@ const Dashboard = () => {
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
                     {
+                        // (role === "admin") 
                         isAdmin ? <>
                             <li><NavLink to="/dashboard/manageclass"><FaUsers></FaUsers> Manage Class</NavLink></li>
                             <li><NavLink to="/dashboard/manageuser"><FaUsers></FaUsers> Manage User</NavLink></li>
                             <li><NavLink to="/"><FaHome></FaHome>  Home</NavLink></li>
-                        </> :
-                            // (role === "instructor") ?
+                        </>
+                            :
+                            isInstructor ?
                                 <>
                                     <li><NavLink to="/"> Home</NavLink></li>
                                     <li><NavLink to="/dashboard/addclass"> Add Class</NavLink></li>
                                     <li><NavLink to="/dashboard/myclasses"> MY Class</NavLink></li>
 
                                 </>
-                                //  :
-                                // <>
-                                //     <li><NavLink>My Enrolled Class</NavLink></li>
-                                //     <li><NavLink>My Select Class</NavLink></li>
-                                //     <li><NavLink to="/"> Home</NavLink></li>
-                                // </>
-
+                                :
+                                <>
+                                    <li><NavLink>My Enrolled Class</NavLink></li>
+                                    <li><NavLink>My Select Class</NavLink></li>
+                                    <li><NavLink to="/"> Home</NavLink></li>
+                                </>
+                        // (role === "instructor") 
                     }
+
                 </ul>
 
             </div>
-        </div>
+        </div >
     );
 };
 
