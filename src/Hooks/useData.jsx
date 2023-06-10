@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const useData = () => {
 
-    const { data: data = [], isLoading: loading, refetch } = useQuery({
+    const {  data = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
             const res = await fetch("http://localhost:5000/data");

@@ -3,7 +3,7 @@ import { FaHome, FaUsers } from 'react-icons/fa';
 
 
 const Dashboard = () => {
-    const role = "admin";
+    const role = "instructor";
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -24,9 +24,9 @@ const Dashboard = () => {
                         </> :
                             (role === "instructor") ?
                                 <>
-                                    <li><NavLink to="/dashboard/"> Add Class</NavLink></li>
-                                    <li><NavLink to="/dashboard/"> MY Class</NavLink></li>
                                     <li><NavLink to="/"> Home</NavLink></li>
+                                    <li><NavLink to="/dashboard/addclass"> Add Class</NavLink></li>
+                                    <li><NavLink to="/dashboard/myclasses"> MY Class</NavLink></li>
 
                                 </> :
                                 <>

@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 const Register = () => {
     const { CreateUser, updateUserProfile } = UseAuth();
 
-
+    
     const location = useLocation();
     const navigate = useNavigate()
 

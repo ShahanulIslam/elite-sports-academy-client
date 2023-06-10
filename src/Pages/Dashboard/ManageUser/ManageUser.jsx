@@ -1,14 +1,21 @@
-import { useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const ManageUser = () => {
-    const users = useLoaderData();
+
+    const [axiosSecure] =useAxiosSecure()
+    const { data: users = [], refetch } = useQuery(["users"], async () => {
+        const res = await axiosSecure.get("/users")
+        console.log(res.data);
+        return res.data;
+    })
+
     console.log(users);
 
     return (
         <div className="overflow-x-auto">
             <table className="table table-zebra w-full">
-                {/* head */}
                 <thead>
                     <tr>
                         <th>#</th>
