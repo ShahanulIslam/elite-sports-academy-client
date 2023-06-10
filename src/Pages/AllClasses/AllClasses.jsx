@@ -1,3 +1,5 @@
+
+import { Helmet } from "react-helmet";
 import useData from "../../Hooks/UseData";
 
 const AllClasses = () => {
@@ -6,6 +8,9 @@ const AllClasses = () => {
 
     return (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+            <Helmet>
+                <title>Elite Sports Academy | All Classes</title>
+            </Helmet>
             {data.map((classItem) => (
                 <div key={classItem._id} className="card card-compact relative bg-base-100 shadow-xl">
                     <figure>

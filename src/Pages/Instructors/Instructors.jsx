@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import useData from "../../Hooks/UseData";
 
 const Instructors = () => {
@@ -5,6 +6,9 @@ const Instructors = () => {
   console.log(data);
   return (
     <div className="bg-gray-100 py-12">
+      <Helmet>
+        <title>Elite Sports Academy | Instructor</title>
+      </Helmet>
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-center mb-8">Meet Our Instructors</h1>
         <p className="text-lg text-gray-600 text-center mb-12">
