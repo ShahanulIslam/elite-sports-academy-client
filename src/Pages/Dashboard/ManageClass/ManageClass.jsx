@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ManageClass = () => {
-    // Todo 
+    // Todo Class Image, Class name, Instructor name, Instructor email, Available seats, Price,
     return (
         <div className="overflow-x-auto w-full">
             <table className="table w-full">
@@ -11,9 +11,12 @@ const ManageClass = () => {
                         <th>
                             #
                         </th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Class Image</th>
+                        <th>Class name</th>
+                        <th>Instructor name</th>
+                        <th>Instructor email</th>
+                        <th>Available seats</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,7 +24,6 @@ const ManageClass = () => {
                     <tr>
                             <td>1</td>
                         <td>
-
                             <div className="avatar">
                                 <div className="mask mask-squircle w-12 h-12">
                                     <img src='' alt="Avatar Tailwind CSS Component" />

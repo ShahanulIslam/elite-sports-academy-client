@@ -4,18 +4,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { Helmet } from "react-helmet";
 import UseAuth from "../../Hooks/UseAuth";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
-    const { CreateUser,updateUserProfile } = UseAuth();
+    const { CreateUser, updateUserProfile } = UseAuth();
 
-    
+
     const location = useLocation();
     const navigate = useNavigate()
 
     const from = location.state?.from?.pathname || "/";
 
-    const { register, handleSubmit,reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data);
         CreateUser(data.email, data.password)
@@ -23,11 +24,30 @@ const Register = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
-                .then(()=>{
-                    
-                })
-                reset()
-                navigate(from, { replace: true });
+                    .then(() => {
+                        const saveUsers = { name: data.name, email: data.email, role:"student" }
+                        fetch("http://localhost:5000/users", {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(saveUsers)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset()
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'User Created Successfully',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    navigate("/")
+                                }
+                            })
+                    })
             })
             .catch(error => {
                 console.log(error)

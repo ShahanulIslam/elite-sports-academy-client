@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const SocialLogin = () => {
     const { signInWithGoogle } = UseAuth();
 
-    
+
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -14,8 +14,20 @@ const SocialLogin = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                navigate(from, { replace: true });
+                // console.log(user);
+                const saveUsers = { name: user.displayName, email: user.email,role:"student" }
+                fetch("http://localhost:5000/users", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(saveUsers)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
+
             })
             .catch(error => {
                 console.log(error);
