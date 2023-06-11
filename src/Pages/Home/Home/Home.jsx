@@ -1,6 +1,7 @@
 // import Slider from "../Slider/Slider";
 
 import { Helmet } from "react-helmet";
+import PopularClass from "../PopularClass/PopularClass";
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
                 <title>Elite Sports Academy | Home</title>
             </Helmet>
             {/* <Slider></Slider> */}
+            <PopularClass></PopularClass>
         </div>
     );
 };

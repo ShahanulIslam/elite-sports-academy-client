@@ -10,7 +10,7 @@ const Payment = () => {
   const location = useLocation()
   const stateValue = location.state;
   console.log(stateValue);
-  const Cartprice = parseFloat(stateValue.price)
+  const ClassPrice = parseFloat(stateValue.price)
 
   return (
     <div className="w-2/3">
@@ -18,7 +18,7 @@ const Payment = () => {
         Make Your payment Done !
       </h2>
       <Elements stripe={stripePromise}>
-        <CheckOut price={Cartprice} items={stateValue}></CheckOut>
+        <CheckOut price={ClassPrice} items={stateValue}></CheckOut>
       </Elements>
     </div>
   );

@@ -1,27 +1,30 @@
 import React from 'react';
-import useData from '../../../Hooks/UseData';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import AllData from '../../../Hooks/AllData';
 
 const ManageClass = () => {
-    const [data, , refetch] = useData();
+    const [allData, ,refetch] = AllData()
     // console.log(data);
 
-    // Handle status Approve 
-    const handleApprove = (item) => {
-        console.log(item);
-        fetch(`http://localhost:5000/data/${item}`, {
+
+    const handleUpdateStatus = (id, status) => {
+        fetch(`http://localhost:5000/classes/${id}`, {
             method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ class_status: status }),
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.modifiedCount) {
+                if (data.acknowledged) {
                     refetch();
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: `Class Approved !`,
+                        title: `Class has been ${status}`,
                         showConfirmButton: false,
                         timer: 1500,
                     });
@@ -29,25 +32,12 @@ const ManageClass = () => {
             });
     };
 
-    // Handle status Deny 
-    const handleDeny = (item) => {
-        console.log(item);
-        fetch(`http://localhost:5000/deny/${item}`, {
-            method: "PATCH",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount) {
-                    refetch();
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: `Class Denied !`,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-            });
+    const handleApprove = (id) => {
+        handleUpdateStatus(id, "approved");
+    };
+
+    const handleDeny = (id) => {
+        handleUpdateStatus(id, "denied");
     };
 
 
@@ -73,7 +63,7 @@ const ManageClass = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item, index) =>
+                    {allData.map((item, index) =>
                         <tr key={item._id}>
                             <td>
                                 {index + 1}
@@ -95,43 +85,14 @@ const ManageClass = () => {
                             <td>{item.available_seats}</td>
                             <td className='text-end'>${item.price}</td>
                             <td className='text-end'>{item.class_status}</td>
-                            <td>
-                                {/* <button className='btn btn-xs  w-full'>Approve</button> */}
-                                {item.class_status === "approved" ? (
-                                    <button className=" w-full btn btn-xs btn-disabled font-bold ">
-                                        Approved
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={() => handleApprove(item.class_status)}
-                                        className="w-full btn btn-xs border-none font-bold"
-                                    >
-                                        Approve
-                                    </button>
-                                )}
-                                {item.class_status === "denied" ? (
-                                    <button className="my-4 w-full btn btn-xs btn-disabled font-bold ">
-                                        Denied
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={() => handleDeny(item.class_status)}
-                                        className="my-4 w-full btn btn-xs border-none font-bold"
-                                    >
-                                        Deny
-                                    </button>
-                                )}
-                                {item.class_status === "denied" &&
+                            <th>
+                                <button disabled={item.class_status !== 'pending'} onClick={() => handleApprove(item._id)} className="btn btn-primary w-full text-white btn-xs">Approve</button>
+                                <br />
+                                <button disabled={item.class_status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn btn-primary my-4 w-full  text-white btn-xs">Deny</button>
+                                <br />
+                                <Link to={`/dashboard/feedback`} state={item}><button className="btn  w-full btn-primary text-white btn-xs">Feedback</button></Link>
+                            </th>
 
-                                    <Link
-                                        state={item}
-                                        to={'/dashboard/feedback'}
-                                        className=" w-full btn btn-sm bg-orange-500 border-none text-white font-bold"
-                                    >
-                                        FeedBack
-                                    </Link>
-                                }
-                            </td>
                         </tr>
                     )}
                 </tbody>

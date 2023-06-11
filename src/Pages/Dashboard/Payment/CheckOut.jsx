@@ -1,7 +1,7 @@
 
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import "./checkOut.css";
+// import "./checkOut.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -17,7 +17,7 @@ const CheckOut = ({ price, items }) => {
   const [clientSecret, setClientSecret] = useState("");
   const { user } = UseAuth();
   const [processing, setProcessing] = useState(false);
-  const [transectionId, setTransectionId] = useState();
+  const [transactionId, setTransactionId] = useState();
 
   //handle intent for payment
   useEffect(() => {
@@ -63,11 +63,11 @@ const CheckOut = ({ price, items }) => {
     setProcessing(false);
     console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
-      setTransectionId(paymentIntent.id);
-      const transectionId = paymentIntent.id;
+      setTransactionId(paymentIntent.id);
+      const transactionId = paymentIntent.id;
       const payment = {
         email: user.email,
-        transectionId: paymentIntent.id,
+        transactionId: paymentIntent.id,
         price,
         data : new Date(),
         className: class_name,
@@ -81,7 +81,7 @@ const CheckOut = ({ price, items }) => {
 
       axiosSecure.post("/paymenthistory", payment).then((res) => {
         if (res.data.insertedId) {
-          Swal.fire("Good job!", "Your payment is Completed!", "success");
+          Swal.fire("Good job!", "Your payment is Successful!", "success");
         }
       });
     }

@@ -86,7 +86,7 @@ const ManageUser = () => {
                                 <td>
                                     {
                                         user.role === "instructor" ? "Instructor" :
-                                            <button onClick={() => handleMakeInstructor(user)} className="btn btn-primary text-white">
+                                            <button onClick={() => handleMakeInstructor(user)} className="btn btn-primary btn-xs text-white">
                                                 Make Instructor                                            </button>
                                     }
                                 </td>
