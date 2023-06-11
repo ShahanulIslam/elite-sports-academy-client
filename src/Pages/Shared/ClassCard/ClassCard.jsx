@@ -34,7 +34,7 @@ const ClassCard = ({ cls }) => {
     }
 
     return (
-        <div className="card card-compact relative bg-base-100 shadow-xl">
+        <div className="card card-compact relative bg-base-100 shadow-xl my-10">
             <figure>
                 <img className="h-72" src={cls.class_image} alt="classes img" />
             </figure>
