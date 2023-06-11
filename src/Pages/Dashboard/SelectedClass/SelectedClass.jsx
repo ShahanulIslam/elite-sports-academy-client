@@ -3,10 +3,41 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import UseSelectedClass from '../../../Hooks/UseSelectedClass';
 import { FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const SelectedClass = () => {
-    const [selectedClass] = UseSelectedClass();
+    const [selectedClass, refetch] = UseSelectedClass();
     console.log(selectedClass);
+
+
+    const handleDelete = (item) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/selected-class/${item._id}`, {
+                    method: "DELETE",
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire(
+                                'Deleted!',
+                                'Your Class has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
+    }
 
     return (
         <div className='w-full'>
@@ -32,7 +63,7 @@ const SelectedClass = () => {
                         </tr>
                     </thead>
                     <tbody>
-                         {selectedClass.map((item, index) =>
+                        {selectedClass.map((item, index) =>
                             <tr key={item._id}>
                                 <td>
                                     {index + 1}
@@ -45,11 +76,11 @@ const SelectedClass = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td>{item.class_name}</td>                                
-                                <td>{item.instructor_name}</td>                                
+                                <td>{item.class_name}</td>
+                                <td>{item.instructor_name}</td>
                                 <td>${item.price}</td>
                                 <td>
-                                    <button  className="btn  text-white bg-red-600"><FaTrashAlt></FaTrashAlt></button>
+                                    <button onClick={() => handleDelete(item)} className="btn  text-white bg-red-600"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
                             </tr>
                         )}
