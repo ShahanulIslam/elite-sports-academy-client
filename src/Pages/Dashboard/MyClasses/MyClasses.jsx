@@ -7,7 +7,7 @@ const MyClasses = () => {
     const [axiosSecure] = useAxiosSecure();
     const { user } = UseAuth()
 
-    axiosSecure(`/data?email=${user?.email}`)
+    axiosSecure(`/myclass?email=${user?.email}`)
         .then(data => {
             console.log(data.data);
         })

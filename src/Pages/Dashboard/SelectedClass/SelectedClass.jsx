@@ -19,7 +19,7 @@ const SelectedClass = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-         }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/selected-class/${item._id}`, {
                     method: "DELETE",
@@ -46,7 +46,7 @@ const SelectedClass = () => {
             </Helmet>
             <div className='uppercase flex font-semibold justify-evenly items-center h-[60px]'>
                 <h3 >My Total Class : {selectedClass.length}</h3>
-                <Link to="/dashboard/payment"><button className='btn btn-warning btn-sm'>Pay</button></Link>
+
             </div>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
@@ -60,6 +60,7 @@ const SelectedClass = () => {
                             <th>Instructor Name</th>
                             <th>Price</th>
                             <th>Action</th>
+                            <th>Pay</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,6 +82,9 @@ const SelectedClass = () => {
                                 <td>${item.price}</td>
                                 <td>
                                     <button onClick={() => handleDelete(item)} className="btn  text-white bg-red-600"><FaTrashAlt></FaTrashAlt></button>
+                                </td>
+                                <td>
+                                    <Link to="/dashboard/payment" state={item}><button className='btn btn-warning btn-sm'>Pay</button></Link>
                                 </td>
                             </tr>
                         )}

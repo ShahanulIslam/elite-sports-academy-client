@@ -1,11 +1,14 @@
 import React from 'react';
 import useData from '../../../Hooks/UseData';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 const ManageClass = () => {
     const [data, , refetch] = useData();
     // console.log(data);
 
+    // Handle status Approve 
     const handleApprove = (item) => {
         console.log(item);
         fetch(`http://localhost:5000/data/${item}`, {
@@ -26,7 +29,7 @@ const ManageClass = () => {
             });
     };
 
-
+    // Handle status Deny 
     const handleDeny = (item) => {
         console.log(item);
         fetch(`http://localhost:5000/deny/${item}`, {
@@ -50,6 +53,9 @@ const ManageClass = () => {
 
     return (
         <div className="overflow-x-auto w-full">
+            <Helmet>
+                <title>Elite Sports Academy | ManageClass</title>
+            </Helmet>
             <table className="table w-full">
                 {/* head */}
                 <thead>
@@ -115,13 +121,20 @@ const ManageClass = () => {
                                         Deny
                                     </button>
                                 )}
-                                {/* <button className='btn btn-xs  my-2 w-full'>Deny</button> */}
-                                <button className='btn btn-xs  w-full'>Feedback</button>
+                                {item.class_status === "denied" &&
+
+                                    <Link
+                                        state={item}
+                                        to={'/dashboard/feedback'}
+                                        className=" w-full btn btn-sm bg-orange-500 border-none text-white font-bold"
+                                    >
+                                        FeedBack
+                                    </Link>
+                                }
                             </td>
                         </tr>
                     )}
                 </tbody>
-                {/* foot */}
             </table>
         </div>
     );

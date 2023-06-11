@@ -20,7 +20,8 @@ const AddClass = () => {
             available_seats: data.available_seats,
             price: data.price,
             class_status: "pending",
-            enrolled_class: 0
+            enrolled_class: 0,
+            feedback: " "
         };
         axiosSecure.post("/data", addData)
             .then(data => {
