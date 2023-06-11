@@ -7,11 +7,11 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AllClasses = () => {
     const [data] = useData();
-    const {user} = UseAuth();
+    const { user } = UseAuth();
     const [axiosSecure] = useAxiosSecure();
 
     const handleSelectClass = cls => {
-        const {class_name, class_image, instructor_name, price} = cls;
+        const { class_name, class_image, instructor_name, price } = cls;
         if (user?.email) {
             const newClass = { userEmail: user?.email, class_name, class_image, instructor_name, price }
             axiosSecure.post('/selected-class', newClass)
@@ -50,8 +50,8 @@ const AllClasses = () => {
                         <div className="flex justify-between">
                             <h4>Available Seats: {classItem.available_seats}</h4>
                         </div>
-                        <div className="card-actions justify-center">
-                            <button onClick={()=> handleSelectClass(classItem)} className="btn btn-primary">Select</button>
+                        <div className="card-actions justify-end">
+                            <button onClick={() => handleSelectClass(classItem)} className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none">Select</button>
                         </div>
                     </div>
                 </div>

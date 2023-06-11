@@ -1,10 +1,53 @@
 import React from 'react';
 import useData from '../../../Hooks/UseData';
+import Swal from 'sweetalert2';
 
 const ManageClass = () => {
     const [data, , refetch] = useData();
-    console.log(data);
-    // Todo Class Image, Class name, Instructor name, Instructor email, Available seats, Price,
+    // console.log(data);
+
+    const handleApprove = (item) => {
+        console.log(item);
+        fetch(`http://localhost:5000/data/${item}`, {
+            method: "PATCH",
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `Class Approved !`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            });
+    };
+
+
+    const handleDeny = (item) => {
+        console.log(item);
+        fetch(`http://localhost:5000/deny/${item}`, {
+            method: "PATCH",
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `Class Denied !`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            });
+    };
+
+
     return (
         <div className="overflow-x-auto w-full">
             <table className="table w-full">
@@ -45,10 +88,34 @@ const ManageClass = () => {
                             </td>
                             <td>{item.available_seats}</td>
                             <td className='text-end'>${item.price}</td>
-                            <td className='text-end'>Pending</td>
+                            <td className='text-end'>{item.class_status}</td>
                             <td>
-                                <button className='btn btn-xs  w-full'>Approve</button>
-                                <button className='btn btn-xs  my-2 w-full'>Deny</button>
+                                {/* <button className='btn btn-xs  w-full'>Approve</button> */}
+                                {item.class_status === "approved" ? (
+                                    <button className=" w-full btn btn-xs btn-disabled font-bold ">
+                                        Approved
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() => handleApprove(item.class_status)}
+                                        className="w-full btn btn-xs border-none font-bold"
+                                    >
+                                        Approve
+                                    </button>
+                                )}
+                                {item.class_status === "denied" ? (
+                                    <button className="my-4 w-full btn btn-xs btn-disabled font-bold ">
+                                        Denied
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() => handleDeny(item.class_status)}
+                                        className="my-4 w-full btn btn-xs border-none font-bold"
+                                    >
+                                        Deny
+                                    </button>
+                                )}
+                                {/* <button className='btn btn-xs  my-2 w-full'>Deny</button> */}
                                 <button className='btn btn-xs  w-full'>Feedback</button>
                             </td>
                         </tr>
