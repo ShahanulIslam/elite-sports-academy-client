@@ -37,8 +37,8 @@ const Dashboard = () => {
                                 </>
                                 :
                                 <>
-                                    <li><NavLink>My Enrolled Class</NavLink></li>
-                                    <li><NavLink>My Select Class</NavLink></li>
+                                    <li><NavLink to="/dashboard/myenrolledclass">My Enrolled Class</NavLink></li>
+                                    <li><NavLink to="/dashboard/selectedclass">My Select Class</NavLink></li>
                                     <li><NavLink to="/"> Home</NavLink></li>
                                 </>
                         // (role === "instructor") 

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaUserShield } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 
 const ManageUser = () => {
@@ -50,10 +51,12 @@ const ManageUser = () => {
                 }
             })
     }
-    console.log(users);
 
     return (
         <div className="overflow-x-auto">
+            <Helmet>
+                <title>Elite Sports Academy | Manage User</title>
+            </Helmet>
             <table className="table table-zebra w-full">
                 <thead>
                     <tr>
@@ -81,7 +84,7 @@ const ManageUser = () => {
                                     }
                                 </td>
                                 <td>
-                                {
+                                    {
                                         user.role === "instructor" ? "Instructor" :
                                             <button onClick={() => handleMakeInstructor(user)} className="btn btn-primary text-white">
                                                 Make Instructor                                            </button>

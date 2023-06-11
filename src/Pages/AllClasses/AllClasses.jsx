@@ -1,9 +1,36 @@
 
 import { Helmet } from "react-helmet";
 import useData from "../../Hooks/UseData";
+import UseAuth from "../../Hooks/UseAuth";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AllClasses = () => {
     const [data] = useData();
+    const {user} = UseAuth();
+    const [axiosSecure] = useAxiosSecure();
+
+    const handleSelectClass = cls => {
+        const {class_name, class_image, instructor_name, price} = cls;
+        if (user?.email) {
+            const newClass = { userEmail: user?.email, class_name, class_image, instructor_name, price }
+            axiosSecure.post('/selected-class', newClass)
+                .then(data => {
+                    console.log(data.data.insertedId)
+                    if (data.data.insertedId) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Selected successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+    }
+
     console.log(data);
 
     return (
@@ -24,7 +51,7 @@ const AllClasses = () => {
                             <h4>Available Seats: {classItem.available_seats}</h4>
                         </div>
                         <div className="card-actions justify-center">
-                            <button className="btn btn-primary">Select Button</button>
+                            <button onClick={()=> handleSelectClass(classItem)} className="btn btn-primary">Select</button>
                         </div>
                     </div>
                 </div>
