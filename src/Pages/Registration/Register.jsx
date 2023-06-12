@@ -26,7 +26,7 @@ const Register = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         const saveUsers = { name: data.name, email: data.email, role: "student" }
-                        fetch("http://localhost:5000/users", {
+                        fetch("https://elite-sports-academy-server-xi.vercel.app/users", {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json"

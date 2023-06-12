@@ -16,7 +16,7 @@ const SocialLogin = () => {
                 const user = result.user;
                 // console.log(user);
                 const saveUsers = { name: user.displayName, email: user.email,role:"student" }
-                fetch("http://localhost:5000/users", {
+                fetch("https://elite-sports-academy-server-xi.vercel.app/users", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

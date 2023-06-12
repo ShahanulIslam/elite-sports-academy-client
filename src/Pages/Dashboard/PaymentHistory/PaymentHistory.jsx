@@ -7,7 +7,7 @@ const PaymentHistory = () => {
 
     const [paymentHistory, setPaymentHistory] = useState([]);
     useEffect(() => {
-        axiosSecure("http://localhost:5000/enrolled-class")
+        axiosSecure("https://elite-sports-academy-server-xi.vercel.app/enrolled-class")
             .then(res => {
                 const enrolledClassesData = res.data;
                 setPaymentHistory(enrolledClassesData);

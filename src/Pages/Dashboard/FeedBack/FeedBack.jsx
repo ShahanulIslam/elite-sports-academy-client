@@ -16,7 +16,7 @@ const FeedBack = () => {
     const fb = form.feedback.value;
 
     // Send the feedback to the API
-    fetch(`http://localhost:5000/insertFeedback/${id}`, {
+    fetch(`https://elite-sports-academy-server-xi.vercel.app/insertFeedback/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

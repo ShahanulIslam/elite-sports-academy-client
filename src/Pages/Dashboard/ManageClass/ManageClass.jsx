@@ -10,7 +10,7 @@ const ManageClass = () => {
 
 
     const handleUpdateStatus = (id, status) => {
-        fetch(`http://localhost:5000/classes/${id}`, {
+        fetch(`https://elite-sports-academy-server-xi.vercel.app/classes/${id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",

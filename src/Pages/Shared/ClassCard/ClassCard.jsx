@@ -3,6 +3,7 @@ import UseAuth from "../../../Hooks/UseAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAdmin from "../../../Hooks/useAdmin";
 import useInstructor from "../../../Hooks/useInstructor";
+import { useNavigate } from "react-router-dom";
 
 const ClassCard = ({ cls }) => {
 
@@ -10,6 +11,7 @@ const ClassCard = ({ cls }) => {
     const [axiosSecure] = useAxiosSecure();
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
+    const navigate = useNavigate();
 
     const handleSelectClass = cls => {
         const { class_name, class_image, instructor_name, price } = cls;
@@ -29,6 +31,21 @@ const ClassCard = ({ cls }) => {
                     }
                 })
                 .catch(err => console.log(err))
+        }
+        else {
+            Swal.fire({
+                title: 'You are not login?',
+                text: "Login before select class!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Do you want to login?'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login')
+                }
+            })
         }
     }
 
