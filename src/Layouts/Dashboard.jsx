@@ -12,16 +12,13 @@ const Dashboard = () => {
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
-                {/* Page content here */}
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                 <Outlet></Outlet>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
-                    {/* Sidebar content here */}
                     {
-                        // (role === "admin") 
                         isAdmin ? <>
                             <li><NavLink to="/dashboard/manageclass"><FaUsers></FaUsers> Manage Class</NavLink></li>
                             <li><NavLink to="/dashboard/manageuser"><FaUsers></FaUsers> Manage User</NavLink></li>
@@ -30,18 +27,17 @@ const Dashboard = () => {
                             :
                             isInstructor ?
                                 <>
-                                    <li><NavLink to="/"> Home</NavLink></li>
+                                    <li><NavLink to="/"><FaHome></FaHome> Home</NavLink></li>
                                     <li><NavLink to="/dashboard/addclass"> Add Class</NavLink></li>
                                     <li><NavLink to="/dashboard/myclasses"> MY Classes</NavLink></li>
 
                                 </>
                                 :
                                 <>
+                                    <li><NavLink to="/"><FaHome></FaHome> Home</NavLink></li>
                                     <li><NavLink to="/dashboard/myenrolledclass">My Enrolled Class</NavLink></li>
                                     <li><NavLink to="/dashboard/selectedclass">My Select Class</NavLink></li>
-                                    <li><NavLink to="/"> Home</NavLink></li>
                                 </>
-                        // (role === "instructor") 
                     }
 
                 </ul>
