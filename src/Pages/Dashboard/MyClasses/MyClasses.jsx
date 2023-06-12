@@ -9,7 +9,7 @@ import { FcFeedback } from "react-icons/fc";
 const MyClasses = () => {
     const [axiosSecure] = useAxiosSecure();
     const { user } = UseAuth();
-    
+
 
     const [addedClass, setAddedClass] = useState([]);
     useEffect(() => {
@@ -45,10 +45,10 @@ const MyClasses = () => {
                     </thead>
                     <tbody>
                         {
-                            addedClass.map((cls,index) =>
+                            addedClass.map((cls, index) =>
                                 <tr key={cls._id}>
                                     <th>
-                                        {index+1}
+                                        {index + 1}
                                     </th>
                                     <td>
                                         <div className="flex items-center space-x-3">
@@ -65,9 +65,17 @@ const MyClasses = () => {
                                     </td>
                                     <td>{cls.enrolled_class}</td>
                                     <td>{cls.class_status}</td>
-                                    <th>
-                                        <button className="btn btn-sm"><FcFeedback></FcFeedback></button>
-                                    </th>
+                                    <td>
+                                        {Array.isArray(cls.feedback) ? (
+                                            cls.feedback.map((feedbackItem, index) => (
+                                                <p key={index} className="mb-2">
+                                                    {feedbackItem}
+                                                </p>
+                                            ))
+                                        ) : (
+                                            <p className="mb-2">There is no Feedback</p>
+                                        )}
+                                    </td>
                                     <th>
                                         <button className="btn btn-primary bg-[#990001] hover:bg-blue-600 text-white btn-sm"> Update</button>
                                     </th>

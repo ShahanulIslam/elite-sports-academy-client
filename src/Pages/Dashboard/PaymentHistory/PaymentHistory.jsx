@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
-const MyEnrolledClass = () => {
-    // const data = useLoaderData();
+const PaymentHistory = () => {
     const [axiosSecure] = useAxiosSecure()
 
-    const [enrolledClass, setEnrolledClass] = useState([]);
+    const [paymentHistory, setPaymentHistory] = useState([]);
     useEffect(() => {
         axiosSecure("http://localhost:5000/enrolled-class")
             .then(res => {
                 const enrolledClassesData = res.data;
-                setEnrolledClass(enrolledClassesData);
+                setPaymentHistory(enrolledClassesData);
             })
             .catch(error => {
                 console.error(error);
             });
     }, []);
-    console.log(enrolledClass);
+    console.log(paymentHistory);
 
     return (
         <div>
             <Helmet>
-                <title>Elite Sports  Academy | MyEnrolled Class</title>
+                <title>Elite Sports  Academy | Payment History</title>
             </Helmet>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
@@ -39,29 +38,19 @@ const MyEnrolledClass = () => {
                     </thead>
                     <tbody>
                         {
-                            enrolledClass.map((cls, index) =>
-                                <tr key={cls._id}>
+                            paymentHistory.map((pay, index) =>
+                                <tr key={pay._id}>
                                     <th>
                                         {index + 1}
                                     </th>
                                     <td>
-                                        <div className="flex items-center space-x-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={cls.image} alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="font-bold">{cls.className}</div>
-                                                <div className="text-sm"> {cls.InstructorName}</div>
-                                            </div>
-                                        </div>
+                                        {pay.className}
                                     </td>
                                     <td>
-                                        {cls.transectionId}
+                                        {pay.transectionId}
                                     </td>
                                     <td>
-                                        ${cls.price}
+                                        ${pay.price}
                                     </td>
                                 </tr>
                             )
@@ -72,9 +61,8 @@ const MyEnrolledClass = () => {
 
                 </table>
             </div>
-
         </div>
     );
 };
 
-export default MyEnrolledClass;
+export default PaymentHistory;

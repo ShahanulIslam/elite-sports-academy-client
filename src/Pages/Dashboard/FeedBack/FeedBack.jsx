@@ -21,7 +21,7 @@ const FeedBack = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ fb }),
+      body: JSON.stringify([fb]),
     })
       .then((response) => response.json())
       .then((result) => {

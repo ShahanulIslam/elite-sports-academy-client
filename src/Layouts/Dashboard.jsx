@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { FaHome, FaUsers } from 'react-icons/fa';
+import { FaHistory, FaHome, FaUsers } from 'react-icons/fa';
 import { BiAddToQueue, } from 'react-icons/bi';
 import { AiFillFileAdd } from 'react-icons/ai';
 import { GrCheckboxSelected } from 'react-icons/gr';
@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
-    
+
     return (
         <div className="drawer lg:drawer-open">
             <Helmet>
@@ -29,23 +29,25 @@ const Dashboard = () => {
                         isAdmin ? <>
                             <li><Link to="/dashboard/manageclass" className="hover:text-[#990001]"><BiAddToQueue></BiAddToQueue> Manage Class</Link></li>
                             <li><Link to="/dashboard/manageuser" className="hover:text-[#990001]"><FaUsers></FaUsers> Manage User</Link></li>
-                            <li><Link to="/" className="hover:text-[#990001]"><FaHome></FaHome>  Home</Link></li>
                         </>
                             :
                             isInstructor ?
                                 <>
-                                    <li><Link to="/" className="hover:text-[#990001]"><FaHome></FaHome> Home</Link></li>
-                                    <li><Link  to="/dashboard/addclass" className="hover:text-[#990001]" > Add Class</Link></li>
+                                    <li><Link to="/dashboard/addclass" className="hover:text-[#990001]" > Add Class</Link></li>
                                     <li><Link to="/dashboard/myclasses" className="hover:text-[#990001]"> MY Classes</Link></li>
 
                                 </>
                                 :
                                 <>
-                                    <li><Link to="/" className="hover:text-[#990001]"><FaHome></FaHome> Home</Link></li>
                                     <li><Link to="/dashboard/selectedclass" className="hover:text-[#990001]"><AiFillFileAdd></AiFillFileAdd> My Select Class</Link></li>
                                     <li><Link to="/dashboard/myenrolledclass" className="hover:text-[#990001]"><GrCheckboxSelected></GrCheckboxSelected> My Enrolled Class</Link></li>
+                                    <li><Link to="/dashboard/payment-history" className="hover:text-[#990001]"><FaHistory></FaHistory> Payment History</Link></li>
                                 </>
                     }
+
+                    <div className="divider">
+                    </div>
+                    <li><Link to="/" className="hover:text-[#990001]"><FaHome></FaHome> Home</Link></li>
 
                 </ul>
 

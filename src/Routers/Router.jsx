@@ -20,6 +20,7 @@ import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
 import MyEnrolledClass from "../Pages/Dashboard/MyEnrolledClass/MyEnrolledClass";
 import FeedBack from "../Pages/Dashboard/FeedBack/FeedBack";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -85,11 +86,14 @@ const router = createBrowserRouter([
       {
         path:"myenrolledclass",
         element:<MyEnrolledClass></MyEnrolledClass>,
-        // loader: () => fetch("http://localhost:5000/enrolled-class")
       },
       {
         path:"payment",
         element:<Payment></Payment>
+      },
+      {
+        path:"payment-history",
+        element:<PaymentHistory></PaymentHistory>
       }
     ]
   }
