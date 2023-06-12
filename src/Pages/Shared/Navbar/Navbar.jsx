@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import UseAuth from "../../../Hooks/UseAuth";
+import DarkMode from "../DarkMode/DarkMode";
 
 
 const Navbar = () => {
     const { user, logOut } = UseAuth()
     const navbarItems = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/instructors">Instructors</Link></li>
-        <li><Link to="/allclasses">Classes</Link></li>
+        <li className="text-[#990001]"><Link to="/">Home</Link></li>
+        <li className="text-[#990001]"><Link to="/instructors">Instructors</Link></li>
+        <li className="text-[#990001]"><Link to="/allclasses">Classes</Link></li>
         {
             user &&
-            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li className="text-[#990001]"><Link to="/dashboard">Dashboard</Link></li>
         }
     </>
 
@@ -22,7 +23,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar bg-base-100 h-28 mb-4">
+        <div className="navbar  h-28 mb-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -34,7 +35,8 @@ const Navbar = () => {
                 </div>
                 <div className="flex gap-2 items-center">
                     <img src="" alt="" />
-                    <h2 className="md:text-2xl hidden md:block font-bold">Elite Sports Academy</h2>
+                    <h2 className="md:text-2xl hidden md:block font-bold text-[#990001]">Elite Sports Academy</h2>
+                    <DarkMode></DarkMode>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -47,9 +49,9 @@ const Navbar = () => {
                     {user ?
                         <div className='flex gap-2 md:gap-4'>
                             <img title={user.displayName} className='rounded-full w-11 h-11' src={user.photoURL} alt="" />
-                            <button onClick={handleLogOut} className='btn btn-primary'>Logout</button>
+                            <button onClick={handleLogOut} className='btn text-white hover:bg-blue-600 bg-[#990001]'>Logout</button>
                         </div> :
-                        <Link to='/login' className="btn btn-primary">Login</Link>
+                        <Link to='/login' className="btn bg-[#990001] text-white hover:bg-blue-600">Login</Link>
                     }
                 </div>
             </div>

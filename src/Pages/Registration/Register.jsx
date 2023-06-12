@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 const Register = () => {
     const { CreateUser, updateUserProfile } = UseAuth();
 
-    
+
     const location = useLocation();
     const navigate = useNavigate()
 
@@ -25,7 +25,7 @@ const Register = () => {
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        const saveUsers = { name: data.name, email: data.email, role:"student" }
+                        const saveUsers = { name: data.name, email: data.email, role: "student" }
                         fetch("http://localhost:5000/users", {
                             method: "POST",
                             headers: {
@@ -118,9 +118,9 @@ const Register = () => {
                                 )}
                             </div>
                             <div className="form-control mt-4">
-                                <input type="submit" className="btn btn-primary" value="Register" />
+                                <input type="submit" className="btn bg-[#990001] text-white hover:bg-blue-600" value="Register" />
                             </div>
-                            <p className='text-center'><small> <Link to="/login">Already have an account</Link></small></p>
+                            <p className='text-center '><small> <Link to="/login">Already have an account</Link></small></p>
                         </form>
                         <SocialLogin></SocialLogin>
                     </div>

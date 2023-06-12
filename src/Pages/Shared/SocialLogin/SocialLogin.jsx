@@ -36,7 +36,7 @@ const SocialLogin = () => {
 
     return (
         <div className='mb-8 mx-auto'>
-            <button onClick={handleGoogleSignIn} className='btn w-[250px]'><FcGoogle></FcGoogle>Continue With Google</button>
+            <button onClick={handleGoogleSignIn} className='btn w-[250px] '><FcGoogle></FcGoogle>Continue With Google</button>
         </div>
     );
 };

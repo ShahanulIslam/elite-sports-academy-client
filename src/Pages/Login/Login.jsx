@@ -86,7 +86,7 @@ const Login = () => {
                             </svg>
                         </div>
                         <div className="form-control mt-4">
-                            <input type="submit" className="btn btn-primary" value="Login" />
+                            <input type="submit" className="btn bg-[#990001] text-white hover:bg-blue-600" value="Login" />
                         </div>
                         <p className='text-center'><small> <Link to="/register">New To Elite Sports Academy</Link></small></p>
                     </form>

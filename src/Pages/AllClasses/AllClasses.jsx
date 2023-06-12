@@ -6,18 +6,19 @@ import ClassCard from "../Shared/ClassCard/ClassCard";
 const AllClasses = () => {
     const [data] = useData();
     return (
-        //     <Helmet>
-        //     <title>Elite Sports Academy | All Classes</title>
-        // </Helmet>
+        <div>
+            <Helmet>
+                <title>Elite Sports Academy | All Classes</title>
+            </Helmet>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-
-            {
-                data.map(cls => <ClassCard
-                    key={cls._id}
-                    cls={cls}
-                ></ClassCard>)
-            }
+                {
+                    data.map(cls => <ClassCard
+                        key={cls._id}
+                        cls={cls}
+                    ></ClassCard>)
+                }
+            </div>
         </div>
 
     );

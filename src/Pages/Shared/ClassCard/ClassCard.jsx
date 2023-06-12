@@ -6,10 +6,10 @@ import useInstructor from "../../../Hooks/useInstructor";
 
 const ClassCard = ({ cls }) => {
 
-    const {user} = UseAuth();
+    const { user } = UseAuth();
     const [axiosSecure] = useAxiosSecure();
     const [isAdmin] = useAdmin();
-    const [isInstructor] =useInstructor();
+    const [isInstructor] = useInstructor();
 
     const handleSelectClass = cls => {
         const { class_name, class_image, instructor_name, price } = cls;
@@ -33,7 +33,7 @@ const ClassCard = ({ cls }) => {
     }
 
     return (
-        <div className="card card-compact relative bg-base-100 shadow-xl my-10">
+        <div className="card card-compact relative bg-base-100 bg-transparent shadow-xl my-10">
             <figure>
                 <img className="h-72" src={cls.class_image} alt="classes img" />
             </figure>
@@ -45,7 +45,7 @@ const ClassCard = ({ cls }) => {
                     <h4>Available Seats: {cls.available_seats}</h4>
                 </div>
                 <div className="card-actions justify-end">
-                    <button disabled={isAdmin || isInstructor} onClick={() => handleSelectClass(cls)} className="btn btn-primary rounded-ful">Select</button>
+                    <button disabled={isAdmin || isInstructor} onClick={() => handleSelectClass(cls)} className="btn bg-[#990001] hover:bg-blue-600 text-white rounded-ful">Select</button>
                 </div>
             </div>
         </div>

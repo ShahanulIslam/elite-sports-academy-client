@@ -6,13 +6,13 @@ const Instructors = () => {
   const [data] = useData();
   console.log(data);
   return (
-    <div className="bg-gray-100 py-12">
+    <div className="py-12">
       <Helmet>
-        <title>Elite Sports Academy | Instructor</title>
+        <title>Elite Sports Academy | Instructors</title>
       </Helmet>
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-center mb-8">Meet Our Instructors</h1>
-        <p className="text-lg text-gray-600 text-center mb-12">
+        <p className="text-lg font-semibold text-center mb-12">
           Explore our talented team of instructors who are passionate about teaching and dedicated to helping you achieve your goals.
         </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">

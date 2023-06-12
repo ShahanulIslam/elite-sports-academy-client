@@ -22,15 +22,6 @@ const MyClasses = () => {
                 console.error(error);
             });
     }, [axiosSecure, user]);
-    console.log(addedClass);
-
-    // axiosSecure(`/myclass?email=${user?.email}`)
-    //     .then(data => {
-    //         const AddedClass = data.data;
-    //         console.log(AddedClass);
-    //     })
-
-
 
     return (
         <div>

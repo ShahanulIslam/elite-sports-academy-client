@@ -12,7 +12,7 @@ const Testimonial = () => {
                 <h2 className="text-5xl font-bold mb-3">Testimonials</h2>
                 <hr className="h-1 w-[18rem]" />
                 <p className="text-lg mt-1 mb-8">
-                    Check out our top-rated Thai dishes that you can easily make at home.
+                    Check out our top-rated <span className="text-gray-500">testimonials about sports</span>.
                 </p>
             </div>
             <div className="max-w-4xl mx-auto text-center">
