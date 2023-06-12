@@ -66,10 +66,10 @@ const MyClasses = () => {
                                     <td>{cls.enrolled_class}</td>
                                     <td>{cls.class_status}</td>
                                     <th>
-                                        <button className="btn btn-ghost btn-sm"><FcFeedback></FcFeedback></button>
+                                        <button className="btn btn-sm"><FcFeedback></FcFeedback></button>
                                     </th>
                                     <th>
-                                        <button className="btn btn-primary text-white btn-sm"> Update</button>
+                                        <button className="btn btn-primary bg-[#990001] hover:bg-blue-600 text-white btn-sm"> Update</button>
                                     </th>
                                 </tr>
                             )

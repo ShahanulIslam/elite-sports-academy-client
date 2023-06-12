@@ -86,11 +86,11 @@ const ManageClass = () => {
                             <td className='text-end'>${item.price}</td>
                             <td className='text-end'>{item.class_status}</td>
                             <th>
-                                <button disabled={item.class_status !== 'pending'} onClick={() => handleApprove(item._id)} className="btn btn-primary w-full text-white btn-xs">Approve</button>
+                                <button disabled={item.class_status !== 'pending'} onClick={() => handleApprove(item._id)} className="btn w-full bg-[#990001] hover:bg-blue-600 text-white  btn-xs">Approve</button>
                                 <br />
-                                <button disabled={item.class_status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn btn-primary my-4 w-full  text-white btn-xs">Deny</button>
+                                <button disabled={item.class_status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn bg-[#990001] hover:bg-blue-600 text-white  my-4 w-full  btn-xs">Deny</button>
                                 <br />
-                                <Link to={`/dashboard/feedback`} state={item}><button className="btn  w-full btn-primary text-white btn-xs">Feedback</button></Link>
+                                <Link to={`/dashboard/feedback`} state={item}><button className="btn  w-full bg-[#990001] hover:bg-blue-600 text-white  btn-xs">Feedback</button></Link>
                             </th>
 
                         </tr>
