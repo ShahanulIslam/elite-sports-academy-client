@@ -10,7 +10,6 @@ const ClassCard = ({ cls }) => {
     const [axiosSecure] = useAxiosSecure();
     const [isAdmin] = useAdmin();
     const [isInstructor] =useInstructor();
-    console.log(isAdmin,isInstructor);
 
     const handleSelectClass = cls => {
         const { class_name, class_image, instructor_name, price } = cls;
