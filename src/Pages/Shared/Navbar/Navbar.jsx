@@ -6,9 +6,9 @@ import DarkMode from "../DarkMode/DarkMode";
 const Navbar = () => {
     const { user, logOut } = UseAuth()
     const navbarItems = <>
-        <li className="text-[#990001]"><Link to="/">Home</Link></li>
-        <li className="text-[#990001]"><Link to="/instructors">Instructors</Link></li>
-        <li className="text-[#990001]"><Link to="/allclasses">Classes</Link></li>
+        <li ><Link to="/">Home</Link></li>
+        <li><Link to="/instructors">Instructors</Link></li>
+        <li><Link to="/allclasses">Classes</Link></li>
         {
             user &&
             <li className="text-[#990001]"><Link to="/dashboard">Dashboard</Link></li>
